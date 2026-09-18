@@ -37,13 +37,18 @@
               (. menu append
                  (MenuItem. #js {:label (t :electron/look-up)
                                  :click #(. web-contents showDefinitionForSelection)})))
-             (when has-text?
-               (. menu append
-                 (MenuItem. #js {:label (t :electron/search-with-google)
-                                 :click #(let [url (js/URL. "https://www.google.com/search")]
-                                           (.. url -searchParams (set "q" selection-text))
-                                           (.. shell (openExternal (.toString url))))}))
-              (. menu append (MenuItem. #js {:type "separator"})))
+(when has-text?
+  (. menu append
+     (MenuItem. #js {:label "Search with DuckDuckGo"
+                     :click #(let [url (js/URL. "https://duckduckgo.com/search")]
+                               (.. url -searchParams (set "q" selection-text))
+                               (.. shell (openExternal (.toString url))))}))
+  (. menu append
+     (MenuItem. #js {:label "Search with Google"
+                     :click #(let [url (js/URL. "https://www.google.com/search")]
+                               (.. url -searchParams (set "q" selection-text))
+                               (.. shell (openExternal (.toString url))))}))
+  (. menu append (MenuItem. #js {:type "separator"})))
 
             (when editable?
               (when has-text?
