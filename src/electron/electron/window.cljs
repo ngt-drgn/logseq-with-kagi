@@ -38,7 +38,7 @@
          [initial-spell-check-enabled? ready-spell-check-enabled?]
          (spell-check/startup-spellcheck-states linux? spell-check-enabled?)
          win-opts  (cond->
-                    {:backgroundColor      "#fff" ; SEE https://www.electronjs.org/docs/latest/faq#the-font-looks-blurry-what-is-this-and-what-can-i-do
+                    {:backgroundColor      "#343434" ; SEE https://www.electronjs.org/docs/latest/faq#the-font-looks-blurry-what-is-this-and-what-can-i-do
                      :width                (.-width win-state)
                      :height               (.-height win-state)
                      :frame                (or mac? native-titlebar?)
